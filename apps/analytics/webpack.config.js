@@ -45,39 +45,36 @@ module.exports = (env, argv) => {
 
     plugins: [
       new ModuleFederationPlugin({
-        name: 'shell',
+        name: 'analytics',
+        filename: 'remoteEntry.js',
         
-        remotes: {
-          analytics: 'analytics@http://localhost:3001/remoteEntry.js',
-          dashboard: 'dashboard@http://localhost:3002/remoteEntry.js',
+        exposes: {
+          './App': './src/App',
         },
 
         shared: {
           react: {
             singleton: true,
             requiredVersion: '^18.2.0',
-            eager: true,
           },
           'react-dom': {
             singleton: true,
             requiredVersion: '^18.2.0',
-            eager: true,
           },
           '@federated-hub/shared-sdk': {
             singleton: true,
-            eager: true,
           },
         },
       }),
 
       new HtmlWebpackPlugin({
         template: './public/index.html',
-        title: 'FederatedHub - Shell',
+        title: 'Analytics MFE - Standalone',
       }),
     ],
 
     devServer: {
-      port: 3000,
+      port: 3001,
       hot: true,
       historyApiFallback: true,
       headers: {

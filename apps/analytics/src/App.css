@@ -1,0 +1,197 @@
+.analytics-container {
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  max-width: 1000px;
+  margin: 0 auto;
+  animation: slideIn 0.5s ease-out;
+}
+
+.analytics-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.analytics-header h2 {
+  font-size: 1.8rem;
+  color: #2d3748;
+  margin: 0;
+}
+
+.badge {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.metric-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-left: 4px solid;
+}
+
+.metric-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.metric-card.purple {
+  border-left-color: #667eea;
+}
+
+.metric-card.blue {
+  border-left-color: #4299e1;
+}
+
+.metric-card.green {
+  border-left-color: #48bb78;
+}
+
+.metric-card.orange {
+  border-left-color: #ed8936;
+}
+
+.metric-icon {
+  font-size: 2.5rem;
+  opacity: 0.8;
+}
+
+.metric-content {
+  flex: 1;
+}
+
+.metric-content h3 {
+  font-size: 0.9rem;
+  color: #718096;
+  margin: 0 0 0.5rem 0;
+  font-weight: 500;
+}
+
+.metric-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0 0 0.5rem 0;
+}
+
+.metric-change {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.metric-change.positive {
+  background: #c6f6d5;
+  color: #22543d;
+}
+
+.metric-change.negative {
+  background: #fed7d7;
+  color: #742a2a;
+}
+
+.analytics-actions {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.refresh-btn,
+.perf-btn {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.refresh-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.refresh-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.perf-btn {
+  background: #f7fafc;
+  color: #4a5568;
+  border: 2px solid #e2e8f0;
+}
+
+.perf-btn:hover {
+  background: #edf2f7;
+  border-color: #cbd5e0;
+}
+
+.analytics-info {
+  background: #f7fafc;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+.analytics-info p {
+  margin: 0.5rem 0;
+  color: #4a5568;
+  font-size: 0.95rem;
+}
+
+.analytics-info strong {
+  color: #2d3748;
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .analytics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .analytics-actions {
+    flex-direction: column;
+  }
+
+  .metric-value {
+    font-size: 1.5rem;
+  }
+}

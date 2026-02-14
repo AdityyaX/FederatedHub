@@ -1,10 +1,3 @@
-/**
- * Event Bus for cross-MFE communication
- * 
- * This implements the Pub-Sub pattern for decoupled communication
- * between micro-frontends without direct dependencies.
- */
-
 import { EventCallback, EventPayload, EventBusInterface } from './types';
 
 class EventBus implements EventBusInterface {
@@ -14,12 +7,6 @@ class EventBus implements EventBusInterface {
     this.events = new Map();
   }
 
-  /**
-   * Subscribe to an event
-   * @param event - Event name to listen for
-   * @param callback - Function to call when event is published
-   * @returns Unsubscribe function
-   */
   subscribe(event: string, callback: EventCallback): () => void {
     if (!this.events.has(event)) {
       this.events.set(event, new Set());
@@ -27,7 +14,6 @@ class EventBus implements EventBusInterface {
 
     this.events.get(event)!.add(callback);
 
-    // Return unsubscribe function
     return () => {
       const callbacks = this.events.get(event);
       if (callbacks) {
@@ -39,12 +25,6 @@ class EventBus implements EventBusInterface {
     };
   }
 
-  /**
-   * Publish an event to all subscribers
-   * @param event - Event name
-   * @param data - Data to send with event
-   * @param source - Name of the MFE publishing the event
-   */
   publish(event: string, data: any, source: string): void {
     const payload: EventPayload = {
       type: event,
@@ -65,27 +45,17 @@ class EventBus implements EventBusInterface {
     }
   }
 
-  /**
-   * Clear all event subscriptions
-   */
   clear(): void {
     this.events.clear();
   }
 
-  /**
-   * Get count of subscribers for an event
-   */
   getSubscriberCount(event: string): number {
     return this.events.get(event)?.size || 0;
   }
 
-  /**
-   * Get all registered event names
-   */
   getEventNames(): string[] {
     return Array.from(this.events.keys());
   }
 }
 
-// Singleton instance
 export const eventBus = new EventBus();

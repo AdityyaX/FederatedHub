@@ -1,7 +1,3 @@
-/**
- * Core types for Micro-Frontend communication
- */
-
 export interface MFEConfig {
   name: string;
   version: string;

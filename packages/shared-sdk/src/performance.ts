@@ -1,31 +1,18 @@
-/**
- * Performance tracking utilities for MFEs
- * 
- * Track load times, render times, and custom metrics
- */
-
 import { PerformanceMetric } from './types';
 
 class PerformanceTracker {
   private metrics: PerformanceMetric[] = [];
   private marks: Map<string, number> = new Map();
 
-  /**
-   * Mark the start of a performance measurement
-   */
   mark(name: string): void {
     const timestamp = performance.now();
     this.marks.set(name, timestamp);
     
-    // Use native performance API if available
     if (typeof performance.mark === 'function') {
       performance.mark(name);
     }
   }
 
-  /**
-   * Measure time between two marks
-   */
   measure(name: string, startMark: string, endMark?: string): PerformanceMetric | null {
     const startTime = this.marks.get(startMark);
     
@@ -50,7 +37,6 @@ class PerformanceTracker {
 
     this.metrics.push(metric);
 
-    // Use native performance API if available
     if (typeof performance.measure === 'function' && endMark) {
       try {
         performance.measure(name, startMark, endMark);
@@ -62,9 +48,6 @@ class PerformanceTracker {
     return metric;
   }
 
-  /**
-   * Measure from a mark to now
-   */
   measureFromMark(name: string, startMark: string, metadata?: Record<string, any>): PerformanceMetric | null {
     const metric = this.measure(name, startMark);
     
@@ -75,23 +58,14 @@ class PerformanceTracker {
     return metric;
   }
 
-  /**
-   * Get all recorded metrics
-   */
   getMetrics(): PerformanceMetric[] {
     return [...this.metrics];
   }
 
-  /**
-   * Get metrics by name pattern
-   */
   getMetricsByName(namePattern: string): PerformanceMetric[] {
     return this.metrics.filter(m => m.name.includes(namePattern));
   }
 
-  /**
-   * Clear all metrics and marks
-   */
   clear(): void {
     this.metrics = [];
     this.marks.clear();
@@ -105,9 +79,6 @@ class PerformanceTracker {
     }
   }
 
-  /**
-   * Log metrics to console in a readable format
-   */
   logMetrics(): void {
     if (this.metrics.length === 0) {
       console.log('No performance metrics recorded');
@@ -125,12 +96,8 @@ class PerformanceTracker {
   }
 }
 
-// Singleton instance
 export const performanceTracker = new PerformanceTracker();
 
-/**
- * Higher-order function to measure component/function execution time
- */
 export function withPerformanceTracking<T extends (...args: any[]) => any>(
   fn: T,
   name: string
@@ -142,7 +109,6 @@ export function withPerformanceTracking<T extends (...args: any[]) => any>(
     try {
       const result = fn(...args);
       
-      // Handle async functions
       if (result instanceof Promise) {
         return result.finally(() => {
           performanceTracker.measureFromMark(name, startMark);
