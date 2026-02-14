@@ -1,0 +1,33 @@
+{
+  "name": "federated-hub",
+  "version": "1.0.0",
+  "description": "Production-grade Micro-Frontend Platform with Module Federation",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "install:all": "npm install && npm run install:shell && npm run install:analytics && npm run install:dashboard && npm run install:sdk",
+    "install:shell": "cd apps/shell && npm install",
+    "install:analytics": "cd apps/analytics && npm install",
+    "install:dashboard": "cd apps/dashboard && npm install",
+    "install:sdk": "cd packages/shared-sdk && npm install",
+    "dev": "concurrently \"npm run dev:shell\" \"npm run dev:analytics\" \"npm run dev:dashboard\"",
+    "dev:shell": "cd apps/shell && npm run dev",
+    "dev:analytics": "cd apps/analytics && npm run dev",
+    "dev:dashboard": "cd apps/dashboard && npm run dev",
+    "build": "npm run build:sdk && npm run build:analytics && npm run build:dashboard && npm run build:shell",
+    "build:shell": "cd apps/shell && npm run build",
+    "build:analytics": "cd apps/analytics && npm run build",
+    "build:dashboard": "cd apps/dashboard && npm run build",
+    "build:sdk": "cd packages/shared-sdk && npm run build"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}
