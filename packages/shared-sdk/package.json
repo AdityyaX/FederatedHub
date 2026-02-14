@@ -1,0 +1,20 @@
+{
+  "name": "@federated-hub/shared-sdk",
+  "version": "1.0.0",
+  "description": "Shared SDK for inter-MFE communication and utilities",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "micro-frontend",
+    "sdk",
+    "event-bus"
+  ],
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}
