@@ -55,20 +55,20 @@ const App: React.FC = () => {
 
   return (
     <div className="shell-container">
-      {/* ─── Hero Header ─── */}
+      {/* ─── Navbar ─── */}
       <header className="shell-header">
         <div className="header-content">
-          <h1>FederatedHub</h1>
-          <p className="subtitle">
-            Production-grade Micro-Frontend platform powered by Webpack 5 Module Federation.
-            Each panel below is an <strong>independently deployed application</strong> loaded at runtime.
-          </p>
+          <div className="header-text">
+            <h1>FederatedHub</h1>
+            <p className="subtitle">
+              Micro-Frontend Platform · Webpack 5 Module Federation
+            </p>
+          </div>
           <div className="tech-pills">
-            <span className="pill">Webpack 5 Module Federation</span>
-            <span className="pill">React 18 Singleton</span>
-            <span className="pill">Event Bus (Pub/Sub)</span>
+            <span className="pill">Module Federation</span>
+            <span className="pill">React 18</span>
+            <span className="pill">Event Bus</span>
             <span className="pill">Error Boundaries</span>
-            <span className="pill">Performance Tracking</span>
             <span className="pill">TypeScript</span>
           </div>
         </div>
