@@ -9,7 +9,7 @@ module.exports = (env, argv) => {
     entry: './src/index.tsx',
     mode: isProduction ? 'production' : 'development',
     devtool: isProduction ? 'source-map' : 'eval-source-map',
-    
+
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: '[name].[contenthash].js',
@@ -46,10 +46,14 @@ module.exports = (env, argv) => {
     plugins: [
       new ModuleFederationPlugin({
         name: 'shell',
-        
+
         remotes: {
-          analytics: 'analytics@http://localhost:3001/remoteEntry.js',
-          dashboard: 'dashboard@http://localhost:3002/remoteEntry.js',
+          analytics: isProduction
+            ? 'analytics@/analytics/remoteEntry.js'
+            : 'analytics@http://localhost:3001/remoteEntry.js',
+          dashboard: isProduction
+            ? 'dashboard@/dashboard/remoteEntry.js'
+            : 'dashboard@http://localhost:3002/remoteEntry.js',
         },
 
         shared: {

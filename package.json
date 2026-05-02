@@ -17,7 +17,7 @@
     "dev:shell": "cd apps/shell && npm run dev",
     "dev:analytics": "cd apps/analytics && npm run dev",
     "dev:dashboard": "cd apps/dashboard && npm run dev",
-    "build": "npm run build:sdk && npm run build:analytics && npm run build:dashboard && npm run build:shell",
+    "build": "npm run build:sdk && npm run build:analytics && npm run build:dashboard && npm run build:shell && rm -rf public && mkdir public && cp -r apps/shell/dist/. public/ && mkdir -p public/analytics && cp -r apps/analytics/dist/. public/analytics/ && mkdir -p public/dashboard && cp -r apps/dashboard/dist/. public/dashboard/",
     "build:shell": "cd apps/shell && npm run build",
     "build:analytics": "cd apps/analytics && npm run build",
     "build:dashboard": "cd apps/dashboard && npm run build",
